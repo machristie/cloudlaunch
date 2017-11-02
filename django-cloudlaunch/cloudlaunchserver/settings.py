@@ -102,7 +102,8 @@ INSTALLED_APPS = [
     'django_celery_results',
     'django_celery_beat',
     'django_countries',
-    'django_filters'
+    'django_filters',
+    'rest_framework_swagger',
 ]
 
 MIDDLEWARE_CLASSES = [
