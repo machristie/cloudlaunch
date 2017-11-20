@@ -7,11 +7,15 @@ django-celery-beat>=1.0.1 # celery background task monitor which uses the django
 redis # As celery message broker during development
 
 # DRF
-djangorestframework==3.6.4
+djangorestframework==3.7.3
 django-rest-auth==0.9.1 # login support for DRF through restful endpoints
 django-allauth>=0.24.1 # pluggable social auth for django login
 drf-nested-routers>=0.11.1 # Provides nested routing for DRF
 django-rest-swagger==2.1.2 # Provides OpenAPI/Swagger schema generation
+# Provides OpenAPI schema generation with a ReDoc UI
+# Note: must use this commit because of this issue: https://github.com/limdauto/drf_openapi/issues/86, should be fixed on next release
+-e git+https://github.com/limdauto/drf_openapi.git@54d24fbdca79e7c942e15e110fc1327155f3be52#egg=drf_openapi
+
 
 # Cloudbridge
 git+git://github.com/gvlproject/cloudbridge

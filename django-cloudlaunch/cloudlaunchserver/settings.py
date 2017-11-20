@@ -103,7 +103,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'django_countries',
     'django_filters',
-    'rest_framework_swagger',
+    'drf_openapi',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -218,7 +218,8 @@ REST_FRAMEWORK = {
 #         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication'
-    )
+    ),
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
 }
 
 REST_AUTH_SERIALIZERS = {

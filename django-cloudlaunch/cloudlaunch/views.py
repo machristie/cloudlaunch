@@ -12,6 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
+import django_filters
 import requests
 
 from djcloudbridge import drf_helpers
@@ -39,7 +40,7 @@ class InfrastructureView(APIView):
     List kinds in infrastructures.
     """
 
-    def get(self, request, format=None):
+    def get(self, request, format=None, version=None):
         # We only support cloud infrastructures for the time being
         response = {'url': request.build_absolute_uri('clouds')}
         return Response(response)
@@ -50,7 +51,7 @@ class AuthView(APIView):
     List authentication endpoints.
     """
 
-    def get(self, request, format=None):
+    def get(self, request, format=None, version=None):
         data = {'login': request.build_absolute_uri(reverse('rest_auth:rest_login')),
                 'logout': request.build_absolute_uri(reverse('rest_auth:rest_logout')),
                 'user': request.build_absolute_uri(reverse('rest_auth:rest_user_details')),
@@ -89,7 +90,7 @@ class DeploymentViewSet(viewsets.ModelViewSet):
     """
     permission_classes = (IsAuthenticated,)
     serializer_class = serializers.DeploymentSerializer
-    filter_backends = (filters.OrderingFilter,filters.DjangoFilterBackend)
+    filter_backends = (filters.OrderingFilter,django_filters.rest_framework.DjangoFilterBackend)
     ordering = ('-added',)
     filter_fields = ('archived',)
 
